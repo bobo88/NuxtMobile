@@ -1,0 +1,8 @@
+#app.hide-left-aside{
+  .left-aside, .empty-box { display: none;}
+  
+  .main-cont-target{ width: 100%;}
+  .content{
+    left: 0;
+  }
+}
