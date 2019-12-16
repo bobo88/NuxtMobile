@@ -5,7 +5,7 @@
     <van-button type="primary">主要按钮</van-button>
   </div>
 </template>
-<style>
+<style lang="scss" scoped>
   .header-box {
     margin: 0 auto;
     padding: 20px 0;

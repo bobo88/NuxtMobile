@@ -1,28 +1,20 @@
 <template>
-  <div class="container">
-    <!-- 引入头部组件 -->
-    <Header></Header>
-
-    <div class="main-box">
-      <p><nuxt-link to="/about">goto about页面</nuxt-link></p>
-      <h1 class="title mb20">
-        dxmall
-      </h1>
-      <h2 class="mb10">异步加载的数据：</h2>
-      <p>{{ foo }}</p>
-      <!-- <h2 class="mb10">异步加载的数据：</h2> -->
-      <!-- <p>{{ users }}</p> -->
-    </div>
+  <div class="container pr">
+    <TopTitle data-title="首页"></TopTitle>
+    <!-- 搜索组件 -->
+    <SearchCom></SearchCom>
 
     <!-- 引入底部文件 -->
-    <Footer></Footer>
+    <Footer :data-current="1"></Footer>
   </div>
 </template>
 
 <script>
-import { getClothes } from '@/api/home'
-import Header from '~/components/Header.vue'
+import TopTitle from '~/components/TopTitle.vue'
+import SearchCom from '~/components/home/SearchCom.vue'
+// import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
+import { getClothes } from '@/api/home'
 
 export default {
   data () {
@@ -31,7 +23,9 @@ export default {
     }
   },
   components: {
-    Header,
+    TopTitle,
+    SearchCom,
+    // Header,
     Footer
   },
   async asyncData ({ $axios }) {
@@ -70,14 +64,14 @@ export default {
   },
   created () {
     console.log(7777)
-    if (process.client) {
-      this.$toast('xxxxx');
-    }
+    // if (process.client) {
+    //   this.$toast('xxxxx');
+    // }
   },
   mounted () {
-    getClothes().then(res => {
-      this.foo = res.data
-    });
+    // getClothes().then(res => {
+    //   this.foo = res.data
+    // });
     // this.$axios.get('/api/sug?code=utf-8&q=%E5%8D%AB%E8%A1%A3&callback=cb')
     // .then((res) => {
     //   this.foo = res
@@ -107,13 +101,11 @@ export default {
 </script>
 
 <style src='../assets/styles/home.scss' lang="scss" scoped></style>
-<style scoped>
+<style lang="scss" scoped>
   .container {
-    position: relative;
-    z-index: 1;
-  }
-  .main-box {
-    background: #069;
+    margin: 0 auto;
+    padding-bottom: 100px;
+    width: 700px;
   }
 </style>
 
