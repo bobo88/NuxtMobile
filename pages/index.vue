@@ -20,8 +20,7 @@
 </template>
 
 <script>
-// import '../assets/styles/xx.scss'
-import { getClothes } from '@/api/user'
+import { getClothes } from '@/api/home'
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
 
@@ -71,9 +70,6 @@ export default {
   },
   created () {
     console.log(7777)
-    // this.open();
-    // console.log(this.users)
-    // console.log(this.msg)
     if (process.client) {
       this.$toast('xxxxx');
     }
@@ -99,24 +95,25 @@ export default {
       meta: [
         {
           name: 'keywords',
-          content: `xxxx无限宝石,无限元宝`
+          content: `首页`
         },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-        // { rel: 'stylesheet', href: '../assets/styles/xx.css' }
       ]
     }
   }
-  // <style src='../assets/styles/xx.scss'></style>
 }
 </script>
 
-<style src='../assets/styles/xx.scss' lang="scss" scoped></style>
+<style src='../assets/styles/home.scss' lang="scss" scoped></style>
 <style scoped>
-    .main-box {
-      width: 750px;
-      background: #069;
-    }
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+  .main-box {
+    background: #069;
+  }
 </style>
 

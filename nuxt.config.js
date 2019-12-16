@@ -30,15 +30,15 @@ export default {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css',
-    '~assets/styles/index.scss'
+    // 'element-ui/lib/theme-chalk/index.css',
+    'vant/lib/index.css',
+    '~assets/styles/base.scss'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui',
-    '@/plugins/mint-ui',
+    '@/plugins/vant',
     '@/plugins/axios'
   ],
   /*
@@ -77,10 +77,10 @@ export default {
   ** Build configuration
   */
   build: {
-    transpile: [/^element-ui/],
+    // transpile: [/^element-ui/],
     postcss: [
       require('postcss-px2rem')({
-        remUnit: 10
+        remUnit: 75
       })
     ],
     /*

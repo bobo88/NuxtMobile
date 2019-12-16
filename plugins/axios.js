@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-import { Message, Notification } from 'element-ui'
+// import { Message, Notification } from 'element-ui'
+import { Toast } from 'vant';
 
 console.log('当前环境MODE：', process.env.mode);
 console.log('------------------------------------------------------------------');
@@ -48,12 +49,13 @@ service.interceptors.response.use(resp => {
     switch (error.response.states) {
       case 400: {
         if (error.response && error.response.data && error.response.data.message) {
-          Notification.error({
-            title: '400错误',
-            message: error.response.data.message,
-            duration: 5000,
-            closable: true
-          })
+          Toast(error.response.data.message);
+          // Notification.error({
+          //   title: '400错误',
+          //   message: error.response.data.message,
+          //   duration: 5000,
+          //   closable: true
+          // })
         }
         break
       }

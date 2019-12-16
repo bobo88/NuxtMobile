@@ -1,15 +1,14 @@
 html, body {
   margin: 0;
   padding: 0;
-  -webkit-text-size-adjust: none;
+  // -webkit-text-size-adjust: none;
   font-size: 12px;
-  //background: #f0f0f0;
   font-family: '微软雅黑', Arial, sans-serif;
-}
-html,body,#app,.wrapper{
-  width: 100%;
-  height: 100%;
   overflow: hidden;
+}
+body {
+  margin: 0 auto;
+  width: 750px;
 }
 ol,ul{ list-style: none;}
 .inline-block{ display: inline-block;}
@@ -43,7 +42,7 @@ a:active {
 
 input, textarea, select {
   font-family: Arial, sans-serif;
-  -webkit-appearance: none;
+  // -webkit-appearance: none;
 }
 
 #app {
@@ -52,165 +51,6 @@ input, textarea, select {
   color: #2c3e50;
 }
 
-/* 超小屏幕（手机，小于 768px） */
-@media (max-width: 768px) {
-  .left-aside{ 
-    position: fixed !important;
-    left: 0px;
-    top: 120px !important;
-    width: 100%;
-  }
-  .content{
-    position: absolute !important;
-    left: 0px !important;
-    right: 0px;
-    top: 120px !important;
-    bottom: 0;
-  }
-  .main-cont-wrapper {
-    // min-height: calc(100vh - 172px);
-    background: #fff;
-  }
-}
-
-/* 小屏幕（平板，大于等于 768px） */
-@media (min-width: 768px) {
-  .left-aside{ 
-    position: fixed !important;
-    left: 0px;
-    top: 120px !important;
-    width: 100%;
-  }
-  .content{
-    position: absolute !important;
-    left: 0px;
-    right: 0px;
-    top: 120px !important;
-    bottom: 0;
-  }
-  #app.hide-left-aside{
-    .content{
-      left: 0;
-    }
-  }
-  .main-cont-wrapper {
-    // min-height: calc(100vh - 172px);
-    background: #fff;
-  }
-}
-
-/* 中等屏幕（桌面显示器，大于等于 992px） */
-@media (min-width: 992px) {
-  .left-aside{ 
-    padding-top: 0px !important;
-    position: absolute !important;
-    left: 0px !important;
-    top: 60px !important;
-    width: 220px;
-  }
-  .content{
-    position: absolute;
-    left: 220px;
-    right: 0;
-    top: 60px !important;
-    bottom: 0;
-  }
-  #app.hide-left-aside{
-    .content{
-      left: 0;
-    }
-  }
-  .main-cont-wrapper {
-    // min-height: calc(100vh - 135px);
-    background: #fff;
-  }
-}
-
-.common-tit {
-  margin-bottom: 15px;
-  padding: 20px 0 10px;
-  height: 50px;
-  line-height: 20px;
-  color: #333;
-  font-size: 16px;
-  border-bottom: 2px solid $mainColor;
-  small {
-    font-size: 14px;
-    color: $color9;
-  }
-  .back {
-    padding: 10px 5px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-}
-
-.sub-title {
-  margin: 0;
-  padding: 10px 5px;
-  color: #333;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.content-wrapper {
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  table {
-    margin-bottom: 0;
-  }
-}
-
-/* 上传添加样式 */
-.avatar-uploader {
-  .el-upload {
-    width: 80px;
-    height: 80px;
-    border: 1px dashed #ccc;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    &:hover {
-      border-color: #3279e1;
-    }
-  }
-}
-
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #666;
-  width: 78px;
-  height: 78px;
-  line-height: 78px !important;
-  text-align: center;
-}
-.avatar {
-  width: 78px;
-  height: 78px;
-  display: block;
-}
-.container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
-}
 .container-fluid {
   padding-right: 15px;
   padding-left: 15px;
