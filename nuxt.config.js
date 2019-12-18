@@ -39,6 +39,7 @@ export default {
   */
   plugins: [
     '@/plugins/vant',
+    {src: '@/plugins/xx', ssr: false},
     '@/plugins/axios'
   ],
   /*

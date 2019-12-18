@@ -3,13 +3,17 @@
     <TopTitle data-title="首页"></TopTitle>
     <!-- 搜索组件 -->
     <SearchCom></SearchCom>
-
+    {{selected}}
+    <client-only>
+      <area-select type="all" v-model="selected" :level="2" :data="pca"></area-select>
+    </client-only>
     <!-- 引入底部文件 -->
     <Footer :data-current="1"></Footer>
   </div>
 </template>
 
 <script>
+import { pca, pcaa } from 'area-data'; // v5 or higher
 import TopTitle from '~/components/TopTitle.vue'
 import SearchCom from '~/components/home/SearchCom.vue'
 // import Header from '~/components/Header.vue'
@@ -19,7 +23,9 @@ import { getClothes } from '@/api/home'
 export default {
   data () {
     return {
-      foo: '异步加载中...'
+      foo: '异步加载中...',
+      selected: ['130000', '130100', ''],
+      pca: pca
     }
   },
   components: {
