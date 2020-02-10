@@ -3,17 +3,12 @@
     <TopTitle data-title="首页"></TopTitle>
     <!-- 搜索组件 -->
     <SearchCom></SearchCom>
-    {{selected}}
-    <client-only>
-      <area-select type="all" v-model="selected" :level="2" :data="pca"></area-select>
-    </client-only>
     <!-- 引入底部文件 -->
     <Footer :data-current="1"></Footer>
   </div>
 </template>
 
 <script>
-import { pca, pcaa } from 'area-data'; // v5 or higher
 import TopTitle from '~/components/TopTitle.vue'
 import SearchCom from '~/components/home/SearchCom.vue'
 // import Header from '~/components/Header.vue'
@@ -24,8 +19,7 @@ export default {
   data () {
     return {
       foo: '异步加载中...',
-      selected: ['130000', '130100', ''],
-      pca: pca
+      selected: ['130000', '130100', '']
     }
   },
   components: {
@@ -70,11 +64,13 @@ export default {
   },
   created () {
     console.log(7777)
+    console.log(this.$IOS_API)
     // if (process.client) {
     //   this.$toast('xxxxx');
     // }
   },
   mounted () {
+    console.log(8888)
     // getClothes().then(res => {
     //   this.foo = res.data
     // });

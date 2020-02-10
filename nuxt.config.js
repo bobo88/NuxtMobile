@@ -39,7 +39,8 @@ export default {
   */
   plugins: [
     '@/plugins/vant',
-    {src: '@/plugins/xx', ssr: false},
+    // {src: '@/plugins/xx', ssr: false},
+    {src: '@/plugins/iosApi', ssr: false},
     '@/plugins/axios'
   ],
   /*
