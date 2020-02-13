@@ -1,8 +1,10 @@
+const env = require('./env')
 
 export default {
   mode: 'universal',
   env: {
-    mode: process.env.mode
+    mode: process.env.MODE,
+    baseUrl: env[process.env.MODE].ENV_API
   },
   /*
   ** Headers of the page

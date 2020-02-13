@@ -4,18 +4,10 @@ import axios from 'axios'
 import { Toast } from 'vant';
 
 console.log('当前环境MODE：', process.env.mode);
+console.log('当前环境baseUrl：', process.env.baseUrl);
 console.log('------------------------------------------------------------------');
 const MODE = process.env.mode;
-let BASE_URL = '';
-if (MODE === 'local') {
-  BASE_URL = 'https://api-local.myjson.com/';
-} else if (MODE === 'test') {
-  BASE_URL = 'https://api-test.myjson.com/';
-} else if (MODE === 'prod') {
-  BASE_URL = 'https://api.myjson.com/';
-} else {
-  // xxx
-}
+const BASE_URL = process.env.baseUrl;
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers.post['Content-Type'] = 'text/plain;charset=UTF-8'
 let service = axios.create({
