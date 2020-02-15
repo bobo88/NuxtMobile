@@ -93,5 +93,8 @@ export default {
     extend (config, ctx) {
     },
     vendor: ['axios'] // 为防止重复打包
+  },
+  router: {
+    middleware: 'auth'
   }
 }
