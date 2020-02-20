@@ -2,7 +2,22 @@
   <div class="container pr">
     <TopTitle data-title="首页"></TopTitle>
     <!-- 搜索组件 -->
-    <SearchCom></SearchCom>
+    <SearchCom class="mb20"></SearchCom>
+    
+    <div class="mb20">
+      <van-switch v-model="checked" />
+    </div>
+
+    <van-uploader class="mb20" :after-read="afterRead" />
+
+    <div class="mb20">
+      <van-pagination 
+        v-model="currentPage" 
+        :total-items="24" 
+        :items-per-page="5"
+      />
+    </div>
+
     <!-- 引入底部文件 -->
     <Footer :data-current="1"></Footer>
   </div>
@@ -18,6 +33,8 @@ import { getClothes } from '@/api/home'
 export default {
   data () {
     return {
+      checked: true,
+      currentPage: 1,
       foo: '异步加载中...',
       selected: ['130000', '130100', '']
     }
@@ -84,6 +101,20 @@ export default {
   methods: {
     open() {
       this.$message('这是一条消息提示');
+    },
+    afterRead(file) {
+      // 此时可以自行将文件上传至服务器
+      console.log(file);
+    },
+    showDialog () {
+      Dialog.confirm({
+        title: '标题',
+        message: '弹窗内容'
+      }).then(() => {
+        // on confirm
+      }).catch(() => {
+        // on cancel
+      });
     }
   },
   head () {
