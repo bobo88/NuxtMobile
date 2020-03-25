@@ -16,7 +16,6 @@ let service = axios.create({
 })
  // 请求拦截 可在请求头中加入token等
 service.interceptors.request.use(config => {
-
   return config
 }, error => {
   return Promise.reject(error)

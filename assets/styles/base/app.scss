@@ -3,11 +3,13 @@ html, body {
   padding: 0;
   // -webkit-text-size-adjust: none;
   font-size: 12px;
-  font-family: '微软雅黑', Arial, sans-serif;
+  font-family: 'Roboto-Bold', 'Roboto', '微软雅黑', Arial, sans-serif;
 }
 body {
   margin: 0 auto;
-  width: 750px;
+  width: 720px;
+  min-height: 100%;
+  overflow-x: hidden;
 }
 ol,ul{ list-style: none;}
 .inline-block{ display: inline-block;}

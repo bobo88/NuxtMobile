@@ -34,6 +34,7 @@ export default {
   css: [
     // 'element-ui/lib/theme-chalk/index.css',
     'vant/lib/index.css',
+    { src: "swiper/dist/css/swiper.css" },
     '~assets/styles/base.scss'
   ],
   /*
@@ -43,6 +44,7 @@ export default {
     '@/plugins/vant',
     // {src: '@/plugins/xx', ssr: false},
     {src: '@/plugins/iosApi', ssr: false},
+    { src: "@/plugins/vue-swiper.js", ssr: false },
     '@/plugins/axios'
   ],
   /*
@@ -83,9 +85,20 @@ export default {
   build: {
     // transpile: [/^element-ui/],
     postcss: [
-      require('postcss-px2rem')({
-        remUnit: 75
-      })
+      require('postcss-pxtorem')({
+        // remUnit: 37.5,
+        propList: ['*'],
+        rootValue: 72, //默认根目录字体大小(px)
+        unitPrecision: 5, //保留小数位
+        // selectorBlackList: [''], //过滤的类名
+        replace: true, //默认直接替换属性
+        mediaQuery: false,
+        minPixelValue: 12, //所有小于设置的样式都不被转换
+      }),
+ 
+      require('autoprefixer')({
+        overrideBrowserslist: ['Android >= 4.0', 'iOS >= 7']
+      }),
     ],
     /*
     ** You can extend webpack config here

@@ -19,7 +19,7 @@
     </div>
 
     <!-- 引入底部文件 -->
-    <Footer :data-current="1"></Footer>
+    <!-- <Footer :data-current="1"></Footer> -->
   </div>
 </template>
 
@@ -133,7 +133,7 @@ export default {
 }
 </script>
 
-<style src='../assets/styles/home.scss' lang="scss" scoped></style>
+<style src='~/assets/styles/home.scss' lang="scss" scoped></style>
 <style lang="scss" scoped>
   .container {
     margin: 0 auto;
