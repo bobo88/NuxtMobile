@@ -21,7 +21,7 @@ export default {
     ],
     script: [
       // {src: '/js/flexable.min.js'}
-      {src: '/js/flexible.js'}
+      {src: 'http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js'}
     ]
   },
   /*
@@ -34,7 +34,7 @@ export default {
   css: [
     // 'element-ui/lib/theme-chalk/index.css',
     'vant/lib/index.css',
-    { src: "swiper/dist/css/swiper.css" },
+    // { src: "swiper/dist/css/swiper.css" },
     '~assets/styles/base.scss'
   ],
   /*
@@ -83,6 +83,7 @@ export default {
   ** Build configuration
   */
   build: {
+    publicPath: process.env.MODE === 'prod' ? 'comedy-show/assets' : '',
     // transpile: [/^element-ui/],
     postcss: [
       require('postcss-pxtorem')({
@@ -103,11 +104,19 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, { isDev, isClient }) {
+      // if(!isDev){
+      //   config.output.publicPath = './_nuxt/';
+      // }
     },
     vendor: ['axios'] // 为防止重复打包
   },
+  generate: {
+    'dir': 'dist_generate'
+  },
   router: {
-    middleware: 'auth'
+    middleware: 'auth',
+    base: '/comedy-show/'
+    // base: process.env.MODE === 'production' ? './' : ''
   }
 }

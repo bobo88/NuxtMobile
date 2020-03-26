@@ -1,4 +1,5 @@
 import Vue from 'vue';
+console.log('is ios api*************************')
 
 let $IOS_API = {};
 

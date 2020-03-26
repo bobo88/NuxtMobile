@@ -1,144 +1,316 @@
 <template>
-  <div class="container pr">
-    <TopTitle data-title="首页"></TopTitle>
-    <!-- 搜索组件 -->
-    <SearchCom class="mb20"></SearchCom>
-    
-    <div class="mb20">
-      <van-switch v-model="checked" />
+  <div class="comedy-show container">
+    <div class="banner">
+      <img :src="require('static/images/comedy-show/banner.jpg')" width="100%" alt="">
+
+      <p class="rule" @click="gotoRulerPage">Ruler</p>
     </div>
 
-    <van-uploader class="mb20" :after-read="afterRead" />
+    <div class="list-box">
+      <client-only>
+        <div class="list-nav" v-if="navList && navList.length > 1">
+          <div v-swiper:mySwiper="swiperOption">
+            <ul class="swiper-wrapper">
+              <li class="swiper-slide" style="width: auto;" :class="{'is-current': item === currentNav}" v-for="(item, index) in navList" :key="index" @click="changeSwiperSlide(item)">
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div v-else class="mb30"></div>
+      </client-only>
 
-    <div class="mb20">
-      <van-pagination 
-        v-model="currentPage" 
-        :total-items="24" 
-        :items-per-page="5"
-      />
+      <ul class="list-list">
+        <!-- single user -->
+        <li class="single-user" v-for="(item, index) in listList" :key="index">
+          <!-- 用户头像 -->
+          <p class="avator">
+            <!-- <img src="static/images/comedy-show/avator.png" alt=""> -->
+            <img :src="require('static/images/comedy-show/avator.png')" alt="">
+          </p>
+          <!-- 用户相关信息 -->
+          <div class="user-info">
+            <p class="user-name">Elizabeth</p>
+            <p class="follows-num"><i class="star-icon"></i><span>75.4K</span></p>
+            <p class="user-desc">Follow me on Vskit Follow me on VskitFollow me on VskitFollow me on VskitFollow me on VskitFollow me on VskitFollow me on VskitFollow me on VskitFollow me on VskitFollow me on VskitFollow me on Vskit</p>
+          </div>
+          <!-- follow -->
+          <p class="follow-box" :class="{'is-following': item.following === 1}">
+            <span v-if="item.following !== 1">Follow</span>
+            <span v-else>Following</span>
+          </p>
+        </li>
+      </ul>
     </div>
 
-    <!-- 引入底部文件 -->
-    <!-- <Footer :data-current="1"></Footer> -->
+    <div class="bottom-arrow-box">
+      <!-- <img src="static/images/comedy-show/bottom_arrow.png" class="icon" alt=""> -->
+      <img :src="require('static/images/comedy-show/bottom_arrow.png')" class="icon" alt="">
+    </div>
   </div>
 </template>
 
 <script>
-import TopTitle from '~/components/TopTitle.vue'
-import SearchCom from '~/components/home/SearchCom.vue'
-// import Header from '~/components/Header.vue'
-import Footer from '~/components/Footer.vue'
-import { getClothes } from '@/api/home'
-
 export default {
   data () {
     return {
-      checked: true,
-      currentPage: 1,
-      foo: '异步加载中...',
-      selected: ['130000', '130100', '']
+      navList: ['Comedy', 'Technology', 'Beautiful on Vskit', 'Football', 'other'],
+      listList: [
+        {
+          userid: '',
+          avator: '',
+          username: '',
+          follows: '',
+          userdesc: ''
+        },
+        {
+          userid: '',
+          avator: '',
+          username: '',
+          follows: '',
+          userdesc: ''
+        },
+        {
+          userid: '',
+          avator: '',
+          username: '',
+          follows: '',
+          userdesc: '',
+          following: 1
+        },
+        {
+          userid: '',
+          avator: '',
+          username: '',
+          follows: '',
+          userdesc: ''
+        },
+        {
+          userid: '',
+          avator: '',
+          username: '',
+          follows: '',
+          userdesc: ''
+        },
+        {
+          userid: '',
+          avator: '',
+          username: '',
+          follows: '',
+          userdesc: ''
+        }
+      ],
+      currentNav: 'Comedy',
+      swiperOption: {
+        // loop: true,
+        slidesPerView: 'auto',
+        spaceBetween: 30,
+        freeMode: true,
+        freeModeSticky: true,
+        slideToClickedSlide: true,
+        on: {
+          slideChange() {
+            console.log('onSlideChangeEnd', this);
+          },
+          tap() {
+            console.log('onTap', this);
+          }
+        }
+      }
     }
-  },
-  components: {
-    TopTitle,
-    SearchCom,
-    // Header,
-    Footer
-  },
-  async asyncData ({ $axios }) {
-    // const {data} = await $axios.get('https://api.myjson.com/bins/13nerg');
-    // // console.log(6868, data)
-    // return {
-    //   users: data
-    // }
-  },
-  /**
-   * request – nuxtServerInit – middleware – validate – asyncData(fetch) – render，跳转页面后，又开始从middleware开始运行，
-   * nuxtServerInit的作用是在vuex的actions内运行，可以拿到一些服务端的数据，比如session，用户验证信息等，然后通过vuex返回给客户端，
-    以上钩子，都是在服务端执行，且都是在pages页面下有钩子函数，而components和layout没有；beforeCreated和created是服务端和客户端都执行的钩子函数，
-    切记，没有window对象，操作dom必须在mounted钩子，不支持keep-alive，所有它的钩子也没有
-   */
-  nuxtServerInit () {
-    console.log(1111)
-  },
-  middleware () {
-    console.log(2222)
-  },
-  validate () {
-    console.log(3333)
-    return true
-  },
-  // asyncData() 适用于在渲染组件前获取异步数据
-  // asyncData () {
-  //   console.log(4444)
-  // },
-  // fetch() 适用于在渲染页面前填充 vuex 中维护的数据
-  fetch () {
-    console.log(5555)
-  },
-  render () {
-    console.log(6666)
-  },
-  created () {
-    console.log(7777)
-    console.log(this.$IOS_API)
-    // if (process.client) {
-    //   this.$toast('xxxxx');
-    // }
   },
   mounted () {
     console.log(8888)
-    // getClothes().then(res => {
-    //   this.foo = res.data
-    // });
-    // this.$axios.get('/api/sug?code=utf-8&q=%E5%8D%AB%E8%A1%A3&callback=cb')
-    // .then((res) => {
-    //   this.foo = res
-    // });
-    // this.open();
-    // console.log($('.main-box').html());
   },
   methods: {
-    open() {
-      this.$message('这是一条消息提示');
+    changeSwiperSlide (item) {
+      this.currentNav = item;
     },
-    afterRead(file) {
-      // 此时可以自行将文件上传至服务器
-      console.log(file);
-    },
-    showDialog () {
-      Dialog.confirm({
-        title: '标题',
-        message: '弹窗内容'
-      }).then(() => {
-        // on confirm
-      }).catch(() => {
-        // on cancel
-      });
-    }
-  },
-  head () {
-    return {
-      meta: [
-        {
-          name: 'keywords',
-          content: `首页`
-        },
-      ],
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-      ]
+    gotoRulerPage () {
+      alert(111)
+      this.$router.push('/ruler')
     }
   }
 }
 </script>
 
-<style src='~/assets/styles/home.scss' lang="scss" scoped></style>
 <style lang="scss" scoped>
   .container {
     margin: 0 auto;
-    padding-bottom: 100px;
-    width: 700px;
+    padding-bottom: 50px;
+    width: 720px;
+  }
+  .banner {
+    position: relative;
+    width: 720px;
+    height: 372px;
+    background: #230839;
+    .rule {
+      position: absolute;
+      z-index: 9;
+      top: 12px;
+      right: 0;
+      padding-left: 10px;
+      width: 104px;
+      height: 44px;
+      line-height: 42px;
+      color: #d5cfd3;
+      font-size: 24px;
+      text-align: center;
+      border: 1px solid #dec1c0;
+      border-radius: 22px 0 0 22px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+  .list-box {
+    padding: 0 24px;
+    .list-nav {
+      padding-bottom: 30px;
+      height: 90px;
+      line-height: 60px;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 32px;
+      .is-current {
+        position: relative;
+        z-index: 3;
+        color: #fff;
+        font-size: 36px;
+        font-weight: bold;
+        &:after {
+          position: absolute;
+          z-index: 2;
+          bottom: 0;
+          left: 50%;
+          margin-left: -32px;
+          content: '';
+          width: 64px;
+          height: 4px;
+          background: #fff;
+          border-radius: 5px;
+        }
+      }
+    }
+    .list-list {
+      .single-user {
+        margin-bottom: 8px;
+        padding: 0 16px;
+        width: 672px;
+        height: 184px;
+        border: 1px solid #49335b;
+        border-radius: 8px;
+        background: #3c2450;
+        .avator {
+          margin-right: 16px;
+          display: inline-block;
+          padding: 44px 0;
+          width: 96px;
+          height: 184px;
+          line-height: 96px;
+          font-size: 0;
+          vertical-align: middle;
+          img {
+            width: 96px;
+            height: 96px;
+            border-radius: 48px;
+            border: 1px solid #fff;
+          }
+        }
+        .user-info {
+          display: inline-block;
+          padding-top: 24px;
+          width: 360px;
+          height: 184px;
+          vertical-align: middle;
+          .user-name {
+            margin-bottom: 5px;
+            height: 38px;
+            line-height: 38px;
+            font-size: 32px;
+            color: #fff;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          .follows-num {
+            margin-bottom: 5px;
+            height: 28px;
+            line-height: 28px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            vertical-align: middle;
+            .star-icon {
+              margin-right: 6px;
+              display: inline-block;
+              width: 22px;
+              height: 21px;
+              background: url('~assets/images/comedy-show/star_icon.png') center center no-repeat;
+              background-size: 22px 21px;
+              vertical-align: middle;
+            }
+            span {
+              display: inline-block;
+              color: rgba(255, 255, 255, 0.6);
+              font-size: 24px;
+              vertical-align: middle;
+            }
+          }
+          .user-desc {
+            height: 56px;
+            line-height: 28px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 24px;
+            text-overflow: -o-ellipsis-lastline;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+          }
+        }
+        .follow-box {
+          display: inline-block;
+          width: 144px;
+          height: 48px;
+          line-height: 48px;
+          color: #fff;
+          font-size: 28px;
+          background: url('~assets/images/comedy-show/btn_bg_follow_color.png') center center no-repeat;
+          background-size: 144px 48px;
+          text-align: center;
+          vertical-align: middle;
+          &.is-following {
+            height: 48px;
+            line-height: 46px;
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 35px;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.6);
+          }
+        }
+      } 
+    }
+  }
+
+  .bottom-arrow-box {
+    position: fixed;
+    z-index: 9;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0));
+    background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0));
+    .icon {
+      position: absolute;
+      z-index: 10;
+      left: 50%;
+      top: 64px;
+      margin-left: -17px;
+      width: 34px;
+      height: 47px;
+    }
   }
 </style>
-
