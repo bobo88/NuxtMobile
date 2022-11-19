@@ -19,7 +19,7 @@
     "cross-env": "^6.0.3",
     "css-loader": "^3.3.2",
     "element-china-area-data": "^4.1.2",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "postcss-px2rem": "^0.3.0",
     "postcss-pxtorem": "^4.0.1",
     "regenerator-runtime": "^0.13.3",
